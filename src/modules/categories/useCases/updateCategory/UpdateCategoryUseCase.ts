@@ -1,11 +1,11 @@
 import { AppError } from '../../../../errors/AppError';
 import { IUpdateCategoryDTO } from '../../dtos/IUpdateCategoryDTO';
-import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 export class UpdateCategoryUseCase {
-  private categoriesRepository: CategoriesRepository;
+  private categoriesRepository: ICategoriesRepository;
 
-  constructor(categoryRepository: CategoriesRepository) {
+  constructor(categoryRepository: ICategoriesRepository) {
     this.categoriesRepository = categoryRepository;
   }
 

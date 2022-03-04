@@ -1,11 +1,11 @@
 import { AppError } from '../../../../errors/AppError';
-import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 export class DeleteCategoryUseCase {
-  private categoriesRepository: CategoriesRepository;
+  private categoriesRepository: ICategoriesRepository;
 
   constructor(
-    categoriesRepository: CategoriesRepository,
+    categoriesRepository: ICategoriesRepository,
   ) {
     this.categoriesRepository = categoriesRepository;
   }

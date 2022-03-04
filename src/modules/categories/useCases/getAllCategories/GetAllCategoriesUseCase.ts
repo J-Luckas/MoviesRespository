@@ -1,9 +1,9 @@
-import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 export class GetAllCategoriesUseCase {
-  private readonly categoriesRepository: CategoriesRepository;
+  private readonly categoriesRepository: ICategoriesRepository;
 
-  constructor(categoriesRepository: CategoriesRepository) {
+  constructor(categoriesRepository: ICategoriesRepository) {
     this.categoriesRepository = categoriesRepository;
   }
 

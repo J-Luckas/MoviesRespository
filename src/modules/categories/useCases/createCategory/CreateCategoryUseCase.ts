@@ -1,12 +1,12 @@
 import { AppError } from '../../../../errors/AppError';
 import { ICreateCategoryDTO } from '../../dtos/ICreateCategoriesDTO';
 import { Category } from '../../entities/Category';
-import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
+import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 export class CreateCategoryUseCase {
-  private categoryRepository: CategoriesRepository;
+  private categoryRepository: ICategoriesRepository;
 
-  constructor(categoryRepository: CategoriesRepository) {
+  constructor(categoryRepository: ICategoriesRepository) {
     this.categoryRepository = categoryRepository;
   }
 

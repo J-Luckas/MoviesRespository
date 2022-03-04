@@ -7,4 +7,5 @@ export interface ICategoriesRepository {
   getAll(): Promise<Category[]>;
   delete(id: string): Promise<void>;
   findById(id: string): Promise<Category | undefined>;
+  update(category: Category): Promise<void>;
 }
