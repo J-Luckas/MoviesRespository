@@ -22,6 +22,9 @@
                 "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
                 "message": "Unexpected property on console object was called"
             }
-        ]
+        ],
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off",
+        "import/no-unresolved": "off",
     }
 }
