@@ -5,7 +5,7 @@ export class DeleteCategoryUseCase {
   private categoriesRepository: CategoriesRepository;
 
   constructor(
-    categoriesRepository,
+    categoriesRepository: CategoriesRepository,
   ) {
     this.categoriesRepository = categoriesRepository;
   }

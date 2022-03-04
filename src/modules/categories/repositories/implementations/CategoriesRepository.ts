@@ -1,5 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 import { ICreateCategoryDTO } from '../../dtos/ICreateCategoriesDTO';
+import { IUpdateCategoryDTO } from '../../dtos/IUpdateCategoryDTO';
 import { Category } from '../../entities/Category';
 import { ICategoriesRepository } from '../ICategoriesRepository';
 
@@ -31,5 +32,9 @@ export class CategoriesRepository implements ICategoriesRepository {
 
   async findById(id: string): Promise<Category | undefined> {
     return this.repository.findOne(id);
+  }
+
+  async update({ id, name, description }: IUpdateCategoryDTO): Promise<void> {
+    await this.repository.save({ id, name, description });
   }
 }
