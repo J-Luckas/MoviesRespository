@@ -1,8 +1,9 @@
 import { getRepository, Repository } from 'typeorm';
 import { ICreateCategoryDTO } from '../../dtos/ICreateCategoriesDTO';
 import { Category } from '../../entities/Category';
+import { ICategoriesRepository } from '../ICategoriesRepository';
 
-export class CategoriesRepository {
+export class CategoriesRepository implements ICategoriesRepository {
   // Language: typescript
   private repository: Repository<Category>;
 
@@ -22,5 +23,13 @@ export class CategoriesRepository {
 
   async getAll(): Promise<Category[]> {
     return this.repository.find();
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id);
+  }
+
+  async findById(id: string): Promise<Category | undefined> {
+    return this.repository.findOne(id);
   }
 }

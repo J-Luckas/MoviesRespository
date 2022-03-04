@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AppError } from '../../../../errors/AppError';
+import { defineError } from '../../../../utils/define_error';
 import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
@@ -14,17 +14,7 @@ export class CreateCategoryController {
         .status(201)
         .json(category);
     } catch (err) {
-      if (err instanceof AppError) {
-        return res
-          .status(err.statusCode)
-          .json({
-            message: err.message,
-          });
-      }
-      return res.status(500).json({
-        status: 'error',
-        message: 'Internal Server Error',
-      });
+      return defineError(err, res);
     }
   }
 }
