@@ -26,4 +26,10 @@ export class MoviesRepository implements IMoviesRepository {
   async findByName(name: string): Promise<Movie | undefined> {
     return this.repository.findOne({ where: { name } });
   }
+
+  async getAll(): Promise<Movie[]> {
+    return this.repository.find({
+      relations: ['category'],
+    });
+  }
 }
