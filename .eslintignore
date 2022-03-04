@@ -1,2 +1,2 @@
-/*.ts
 node_modules
+src/modules/**/repositories/*.ts

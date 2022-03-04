@@ -22,9 +22,9 @@ export class Movie {
   @Column()
     category_id: string;
 
-  @ManyToOne( () => Category )
+  @ManyToOne(() => Category)
   @JoinColumn({ name: 'category_id' })
-  category: Category;
+    category: Category;
 
   @Column()
     description: string;

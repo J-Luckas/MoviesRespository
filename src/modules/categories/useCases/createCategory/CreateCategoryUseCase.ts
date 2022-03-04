@@ -1,17 +1,20 @@
-import { ICreateCategoryDTO } from "../../dtos/ICreateCategoriesDTO";
-import { Category } from "../../entities/Category";
-import { CategoriesRepository } from "../../repositories/implementations/CategoriesRepository";
+import { AppError } from '../../../../errors/AppError';
+import { ICreateCategoryDTO } from '../../dtos/ICreateCategoriesDTO';
+import { Category } from '../../entities/Category';
+import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
 
 export class CreateCategoryUseCase {
-  constructor(private categoryRepository: CategoriesRepository) {}
+  private categoryRepository: CategoriesRepository;
 
-  async execute({ name, description }: ICreateCategoryDTO): Promise<Category> {
+  constructor(categoryRepository: CategoriesRepository) {
+    this.categoryRepository = categoryRepository;
+  }
 
+  async execute({ name, description }: ICreateCategoryDTO): Promise<Category | AppError> {
     const existsCategory = await this.categoryRepository.findByName(name);
 
-    console.log(existsCategory);
-    if( existsCategory ) throw new Error("Category already exists");
+    if (existsCategory) throw new AppError('Category already exists', 401);
 
-    return await this.categoryRepository.create( { name, description } );
+    return this.categoryRepository.create({ name, description });
   }
 }

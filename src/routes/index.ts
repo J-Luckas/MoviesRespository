@@ -3,4 +3,4 @@ import { categoriesRoutes } from './categories.routes';
 
 export const router = Router();
 
-router.use("/categories", categoriesRoutes)
+router.use('/categories', categoriesRoutes);
