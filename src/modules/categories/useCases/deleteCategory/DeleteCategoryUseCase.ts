@@ -1,11 +1,14 @@
+import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../errors/AppError';
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
+@injectable()
 export class DeleteCategoryUseCase {
   private categoriesRepository: ICategoriesRepository;
 
   constructor(
-    categoriesRepository: ICategoriesRepository,
+    @inject('CategoriesRepository')
+      categoriesRepository: ICategoriesRepository,
   ) {
     this.categoriesRepository = categoriesRepository;
   }

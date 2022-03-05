@@ -1,11 +1,16 @@
+import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../errors/AppError';
 import { IUpdateCategoryDTO } from '../../dtos/IUpdateCategoryDTO';
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
+@injectable()
 export class UpdateCategoryUseCase {
   private categoriesRepository: ICategoriesRepository;
 
-  constructor(categoryRepository: ICategoriesRepository) {
+  constructor(
+    @inject('CategoriesRepository')
+      categoryRepository: ICategoriesRepository,
+  ) {
     this.categoriesRepository = categoryRepository;
   }
 

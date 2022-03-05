@@ -23,7 +23,7 @@ export class CategoriesRepository implements ICategoriesRepository {
   }
 
   async getAll(): Promise<Category[]> {
-    return this.repository.find();
+    return await this.repository.find();
   }
 
   async delete(id: string): Promise<void> {

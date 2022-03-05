@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import { defineError } from '../../../../utils/define_error';
-import { CategoriesRepository } from '../../../categories/repositories/implementations/CategoriesRepository';
-import { MoviesRepository } from '../../repositories/implementations/MoviesRepository';
 import { CreateMovieUseCase } from './CreateMovieUseCase';
 
 export class CreateMovieController {
@@ -12,10 +11,7 @@ export class CreateMovieController {
         name, description, duration, category_id,
       } = req.body;
 
-      const moviesRepository = new MoviesRepository();
-      const categoriesRepository = new CategoriesRepository();
-
-      const createdMovieUseCase = new CreateMovieUseCase(moviesRepository, categoriesRepository);
+      const createdMovieUseCase = container.resolve(CreateMovieUseCase);
 
       const movie = await createdMovieUseCase.execute({
         // eslint-disable-next-line camelcase

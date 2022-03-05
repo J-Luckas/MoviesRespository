@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import { defineError } from '../../../../utils/define_error';
-import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
 import { UpdateCategoryUseCase } from './UpdateCategoryUseCase';
 
 export class UpdateCategoryController {
@@ -8,8 +8,8 @@ export class UpdateCategoryController {
     try {
       const { id } = req.params;
       const { name, description } = req.body;
-      const categoryRepository = new CategoriesRepository();
-      const updateCategoryUseCase = new UpdateCategoryUseCase(categoryRepository);
+
+      const updateCategoryUseCase = container.resolve(UpdateCategoryUseCase);
       await updateCategoryUseCase.execute({ id, name, description });
       return res.status(204).send();
     } catch (err) {

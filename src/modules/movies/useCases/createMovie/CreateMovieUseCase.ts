@@ -1,15 +1,22 @@
+import { injectable, inject } from 'tsyringe';
 import { AppError } from '../../../../errors/AppError';
 import { ICategoriesRepository } from '../../../categories/repositories/ICategoriesRepository';
 import { ICreateMoviesDTO } from '../../dtos/ICreateMoviesDTO';
 import { Movie } from '../../entities/Movie';
 import { IMoviesRepository } from '../../repositories/IMoviesRepository';
 
+@injectable()
 export class CreateMovieUseCase {
   private movieRepository: IMoviesRepository;
 
   private categoryRepository: ICategoriesRepository;
 
-  constructor(movieRepository: IMoviesRepository, categoryRepository: ICategoriesRepository) {
+  constructor(
+    @inject('MoviesRepository')
+      movieRepository: IMoviesRepository,
+    @inject('CategoriesRepository')
+      categoryRepository: ICategoriesRepository,
+  ) {
     this.movieRepository = movieRepository;
     this.categoryRepository = categoryRepository;
   }
